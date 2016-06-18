@@ -1,0 +1,26 @@
+<div class="col-lg-12 mynavtop">
+    <ul class="nav nav-pills pull-right">
+        <li><a href="/"><%= gettext "Back" %></a></li>
+    </ul>
+</div>
+<div class="col-lg-6 news-us">
+  <h2><%= gettext "News US" %></h2>
+  <%= raw( @msn_us ) %>
+</div>
+<div class="col-lg-6 news-uk">
+  <h2><%= gettext "News UK" %></h2>
+  <%= raw( @msn_gb ) %>
+</div>
+<div class="col-lg-12 sdtimes">
+  <h2><%= gettext "SD Times" %></h2>
+  <%= raw( @sdtimes ) %>
+</div>
+<div class="col-lg-12 dilbert">
+    <h2>Dilbert</h2>
+    <%= raw( @dilbert ) %>
+</div>
+<div class="col-lg-12 mynavbottom">
+    <ul class="nav nav-pills pull-right">
+        <li><a href="/"><%= gettext "Back" %></a></li>
+    </ul>
+</div>

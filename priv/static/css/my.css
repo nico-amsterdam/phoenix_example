@@ -1,0 +1,11 @@
+.img-comic { margin: 40px; }
+
+.sdtimes .summary a.read-more,
+.sdtimes .summary p + p {
+  display:none;
+}
+
+.news-uk li.first a img,
+.news-us li.first a img {
+  display:block;
+}

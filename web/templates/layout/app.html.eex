@@ -9,10 +9,13 @@
 
     <title>Hello PhoenixExample!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/my.css") %>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
@@ -20,6 +23,7 @@
           </ul>
         </nav>
         <span class="logo"></span>
+        <h1><%= gettext "My examples" %><h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
