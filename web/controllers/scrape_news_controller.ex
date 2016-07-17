@@ -21,6 +21,7 @@ defmodule PhoenixExample.ScrapeNewsController do
     |> Select.find([{:attr, "id", "main"}, {:class, "normalsection"}])
     |> Select.html
     |> IO.iodata_to_binary
+    |> String.replace(~r/href=\"/, "target=\"news\" href=\"//www.msn.com/")
   end
 
   # scrape rss feed
