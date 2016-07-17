@@ -20,8 +20,12 @@ defmodule PhoenixExample.Router do
     get "/scrape_news", ScrapeNewsController, :index
   end
 
+  scope "/api", PhoenixExample do
+    pipe_through :api
+
+    resources "/product", JsonProductController
+  end
+
   # Other scopes may use custom stacks.
-  # scope "/api", PhoenixExample do
-  #   pipe_through :api
-  # end
+
 end
