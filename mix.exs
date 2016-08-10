@@ -18,7 +18,7 @@ defmodule PhoenixExample.Mixfile do
   def application do
     [mod: {PhoenixExample, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :httpoison, :xmerl, :feeder_ex, :feeder]]
+                    :httpotion, :xmerl, :feeder_ex, :feeder]]
   end
 
   # Specifies which paths to compile per environment.
@@ -35,7 +35,9 @@ defmodule PhoenixExample.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:feeder_ex, "~> 0.0.2"},
-     {:httpoison, "~> 0.8.3"},
-     {:select, "~> 0.0.1"}]
+     {:httpotion, "~> 3.0"},
+     {:select, "~> 0.0.1"},
+     {:simple_mem_cache, "~> 0.1"},
+     {:eternal, "~> 1.0"}]
   end
 end
