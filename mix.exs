@@ -29,7 +29,8 @@ defmodule PhoenixExample.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.6"},
+    [
+     {:phoenix, "~> 1.1.6"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
@@ -38,6 +39,8 @@ defmodule PhoenixExample.Mixfile do
      {:httpotion, "~> 3.0"},
      {:select, "~> 0.0.1"},
      {:simple_mem_cache, "~> 0.1"},
-     {:eternal, "~> 1.0"}]
+     {:eternal, "~> 1.0"},
+     {:nimble_csv, "~> 0.1"}
+    ]
   end
 end

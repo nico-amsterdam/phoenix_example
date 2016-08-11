@@ -7,6 +7,7 @@ defmodule PhoenixExample.ScrapeNewsController do
   end
 
   defp curl(url) do
+    # The timeout you fill in here depends on your connection speed and how fast the sites are that you scrape. 
     timeout_ms = 8000
     case HTTPotion.get(url, [timeout: timeout_ms]) do
       %HTTPotion.Response{body: body} -> body
@@ -89,9 +90,7 @@ defmodule PhoenixExample.ScrapeNewsController do
 
   defp time_left(end_at_millisec) do
     # 10 bonus milliseconds if time is up.
-    ms = max(10, end_at_millisec - :os.system_time(:milli_seconds))
-    IO.puts ms
-    ms
+    max(10, end_at_millisec - :os.system_time(:milli_seconds))
   end
 
 end
