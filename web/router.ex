@@ -23,7 +23,7 @@ defmodule PhoenixExample.Router do
   scope "/api", PhoenixExample do
     pipe_through :api
 
-    resources "/product", JsonProductController
+    resources "/productcat", JsonProductCategoryController
   end
 
   # Other scopes may use custom stacks.

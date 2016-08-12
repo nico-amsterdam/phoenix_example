@@ -1,11 +1,10 @@
-defmodule PhoenixExample.JsonProductController do
+defmodule PhoenixExample.JsonProductCategoryController do
   use PhoenixExample.Web, :controller
 
   alias NimbleCSV.RFC4180, as: CSV
 
-
-  defp retrieve_productlist() do
-    # make sure that this file is on SSD. SSD = cheap RAM
+  defp retrieve_product_category_list() do
+    # make sure that this file is on SSD. SSD = cheap RAM = superfast
     "priv/data/product/productcat.csv" 
     |> File.stream!
     |> CSV.parse_stream 
@@ -15,8 +14,7 @@ defmodule PhoenixExample.JsonProductController do
   end
 
   def index(conn, _params) do
-    productlist = retrieve_productlist()
-    products = %{products: productlist}
-    render(conn, "index.json", prod: products)
+    product_category_list = retrieve_product_category_list()
+    render(conn, "index.json", productcat: product_category_list)
   end
 end
