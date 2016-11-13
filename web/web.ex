@@ -44,6 +44,9 @@ defmodule PhoenixExample.Web do
       import PhoenixExample.Router.Helpers
       import PhoenixExample.ErrorHelpers
       import PhoenixExample.Gettext
+
+      # Awesomplete autocomplete widget:
+      import PhoenixFormAwesomplete
     end
   end
 

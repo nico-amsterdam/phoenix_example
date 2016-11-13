@@ -9,8 +9,13 @@ defmodule PhoenixExample.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
+  pipeline :api_cached do
     plug :accepts, ["json"]
+    plug :max_age, 60 * 60 * 12
+  end
+
+  defp max_age(conn, max_age) when is_integer(max_age) do
+    Plug.Conn.put_resp_header(conn, "cache-control", "max-age=" <> to_string(max_age))
   end
 
   scope "/", PhoenixExample do
@@ -18,12 +23,13 @@ defmodule PhoenixExample.Router do
 
     get "/", PageController, :index
     get "/scrape_news", ScrapeNewsController, :index
+    get "/autocomplete", AutocompleteController, :index
   end
 
-  scope "/api", PhoenixExample do
-    pipe_through :api
+  scope "/rest/public", PhoenixExample do
+    pipe_through :api_cached
 
-    resources "/productcat", JsonProductCategoryController
+    resources "/v1/productcat", JsonProductCategoryController
   end
 
   # Other scopes may use custom stacks.

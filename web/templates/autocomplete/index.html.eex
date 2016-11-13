@@ -1,0 +1,502 @@
+<form id="example" class="form-horizontal">
+
+
+   <div class="form-group row">
+     Parameters with javascript code or referring to javascripts functions has to be quoted.
+     
+     Markup code is not mangled with when highlighting the found text.
+     (and it won't highlight the description if you don't search in the description).
+
+     Use the AwesompleteUtil filter to filter on value instead of label, which would be undesirable 
+     because it would match the html element and attribute names, if you type 'style' it will match
+     all colors..
+ 
+     <label for="color" class="control-label col-sm-2">
+     Color
+     </label>
+     <div class="col-sm-10">
+         <%= awesomplete(
+              :user, 
+              :color, 
+              [class: "form-control"], 
+              %{ 
+                 minChars: 1, 
+                 maxItems: 10, 
+                 filter: "AwesompleteUtil.filterContains",
+           list: "[
+               { label: \"<b style='color:black'>black</b>\",   value: 'black' },
+               { label: \"<b style='color:blue'>blue</b>\",     value: 'blue'  },
+               { label: \"<b style='color:brown'>brown</b>\",   value: 'brown' },
+               { label: \"<b style='color:green'>green</b>\",   value: 'green' },
+               { label: \"<b style='color:orange'>orange</b>\", value: 'orange'},
+               { label: \"<b style='color:pink'>pink</b>\",     value: 'pink'  },
+               { label: \"<b style='color:purple'>purple</b>\", value: 'purple'},
+               { label: \"<b style='color:red'>red</b>\",       value: 'red'   },
+               { label: \"<b style='color:yellow'>yellow</b>\", value: 'yellow'}
+           ]"
+                  }
+             ) %>
+     </div>
+   </div>
+
+   <div class="form-group row">
+     <label for="country" class="control-label col-sm-2">
+     Country
+     </label>
+     <div class="col-sm-10">
+     <input class="awesomplete form-control" id="country"
+       value="India"
+       data-minchars="1"
+       data-maxitems="5"
+       data-list="China, India, Japan, Russia, UK, Wallis and Futuna" >
+     </div>
+   </div>
+
+   <!-- zoiets als het onderstaande, maar dan met copy-to-id, value die match -->
+   <div class="form-group row">
+     <label for="email2" class="control-label col-sm-2">
+     Email (geen util)
+     </label>
+     <div class="col-sm-10">
+         <%= copy_to_id(:user, :name1, "description", "#awe-result") %>
+     <input class="form-control" id="email2" data-list="aol.com, att.net, comcast.net, facebook.com, gmail.com, gmx.com, googlemail.com, google.com, hotmail.com, hotmail.co.uk, mac.com, me.com, mail.com, msn.com, live.com, sbcglobal.net, verizon.net, yahoo.com, yahoo.co.uk" value="aol.com">
+     <script>
+        new Awesomplete('input[id="email2"]', {
+           filter: Awesomplete.FILTER_STARTSWITH
+        });
+     </script>
+     </div>
+   </div>
+
+   <div class="form-group row">
+     <label for="email1" class="control-label col-sm-2">
+     Email5
+     </label>
+     <div class="col-sm-10">
+         <%= text_input(:user, :email5, [class: "form-control", value: "aol.com", autocomplete: "off", "data-list": "aol.com, att.net, comcast.net, facebook.com, gmail.com, gmx.com, googlemail.com, google.com, hotmail.com, hotmail.co.uk, mac.com, me.com, mail.com, msn.com, live.com, sbcglobal.net, verizon.net, yahoo.com, yahoo.co.uk" ]) %>
+     </div>
+     <div id="awe-resultx"></div>
+         <%= copy_to_id(:user, :email5, nil, "#awe-resultx") %>
+         <%= awesomplete_script_tag(
+              :user, 
+              :email5, 
+              %{ 
+                 prepop: true, 
+                 minChars: 1, 
+                 maxItems: 10
+               }
+             ) %>
+   </div>
+
+  <fieldset>
+    <legend class="h4">
+    Search product names starting with search text, display name and description
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'Lawn'
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :name1, "Product", class: "control-label col-sm-2") %>
+       <div class="col-sm-10">
+         <%= copy_to_id(:user, :name1, "description", "#awe-result") %>
+         <%= copy_to_field(:user, :name1, "name", :user, :name1copy) %>
+         <%= awesomplete(
+              :user, 
+              :name1, 
+              [class: "form-control", value: "Basic Electical"], 
+              %{ url: "/rest/public/v1/productcat/?contains=",
+     #           prepop: true, 
+     #           loadall: true, 
+                 minChars: 1, 
+                 maxItems: 10, 
+                 # filter: "Awesomplete.FILTER_STARTSWITH",
+                 multiple: ",",
+                 value: "name", 
+                 descr: "description", 
+                 descrSearch: true,
+                 assign: "myvar" }
+             ) %>
+         <%= text_input(:user, :name1copy, [class: "form-control"]) %>
+         <span id="awe-result"></span>
+       </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="h4">
+    Search text in product name or description
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'Lawn'
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :name2, "Product", class: "control-label col-sm-2") %>
+       <div class="col-sm-10">
+           <%= awesomplete(:user, :name2, [class: "form-control"], %{ url: "/rest/public/v1/productcat/?search-fields=name,description&contains=", minChars: 1, maxItems: 10, value: "name", descr: "description", descrSearch: true, assign: true}) %>
+       </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="h4">
+    Search country names, countries loaded on page-load
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter either country or capital, for example 'Belgium' or 'Brussels' and look what happens.
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= copy_to_field(:user, :country2, "capital", :user, :capital) %>
+      <%= copy_to_field(:user, :capital, "name", :user, :country2) %>
+      <%= label(:user, :country2, "Country", class: "control-label col-sm-2") %>
+      <div class="col-sm-4">
+        <%= awesomplete(:user, :country2, [class: "form-control"], 
+            [ 
+              assign: true,
+              minChars: 1, 
+              maxItems: 7, 
+              value: "name" 
+            ]) %>
+      </div>
+      <%= label(:user, :capital, "Capital", class: "control-label col-sm-2") %>
+      <div class="col-sm-4">
+        <%= awesomplete(:user, :capital, [class: "form-control"], 
+            [ 
+              assign: true,
+              minChars: 1, 
+              maxItems: 7, 
+              value: "capital" 
+            ]) %>
+      </div>
+      <script>
+         AwesompleteUtil.ajax('//restcountries.eu/rest/v1/all','','', function(e) {
+           var xhr = this, list;
+           if (xhr.status === 200) {
+             list = JSON.parse(xhr.responseText);
+             awe_user_country2.list = list;
+             awe_user_capital.list = list;
+           }
+         });
+      </script>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'Belgium'
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= copy_to_id(:user, :capital, "capital", "#awe-country-result") %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="h4">
+    email
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter email address
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :name5, "Email", class: "control-label col-sm-2") %>
+       <div class="hide-not-found col-sm-10">
+         <%= awesomplete(
+              :user, 
+              :name5, 
+              [type: "email",
+               class: "form-control",
+              "data-list": "aol.com, att.net, comcast.net, facebook.com, gmail.com, gmx.com, googlemail.com, google.com, hotmail.com, hotmail.co.uk, mac.com, me.com, mail.com, msn.com, live.com, sbcglobal.net, verizon.net, yahoo.com, yahoo.co.uk"
+              ], 
+              %{
+                 filter: "Awesomplete.FILTER_STARTSWITH",
+                 data:   "function (text, input) { return input.slice(0, input.indexOf('@')) + '@' + text; }"
+               }
+         ) %>
+       </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="h4">
+    Ssh hosts
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'root@router'
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :host1, "Ssh host", class: "control-label col-sm-2") %>
+       <!-- hide not found want zolang je geen @ hebt ingetypt is de lijst leeg en denkt hij dat er geen match bestaat -->
+       <div class="hide-not-found col-sm-10">
+         <%= awesomplete(
+              :user, 
+              :host1, 
+              [
+               class: "form-control"
+              ], 
+              %{
+                 url:    "/js/host.json",
+                 loadall: true,
+                 filter: "Awesomplete.FILTER_STARTSWITH",
+                 value: "value", 
+                 descr: "label", 
+                 data:   "function (data, input) { var before = input.slice(0, input.indexOf('@')) + '@'; return {label: before + data.label, value: before + data.value}; }"
+               }
+         ) %>
+       </div>
+    </div>
+  </fieldset>
+
+  <script src="/js/uinames2contacts.js"></script>
+  <fieldset>
+    <legend class="h4">
+    Email address
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'Nanda@acme.com'
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :email2, "Email", class: "control-label col-sm-2") %>
+       <div class="col-sm-10">
+         <%= awesomplete(
+              :user, 
+              :email2, 
+              [
+               class: "form-control"
+              ], 
+              %{
+                 url:    "//uinames.com/api/?amount=100",
+                 convertResponse: "uinames2contacts",
+                 loadall: true,
+                 minChars: 1,
+                 value:  "value", 
+                 label:  "name",
+                 descr:  "email"
+               }
+         ) %>
+       </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="h4">
+    Spotify artist
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+        Enter for example 'Abba'
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :artist1, "Artist", class: "control-label col-sm-2") %>
+       <div class="col-sm-10">
+         <script>
+           var filterWords = function(data, input) {
+             var words = input.split(/\s+/), result = true, j;
+             for (j = 0; result && j < words.length; j++) {
+               result = Awesomplete.FILTER_CONTAINS(data, words[j]); 
+             }
+             return result;
+           },
+           itemWords = function(text, input) {
+             var arr, words = input.split(/\s+/), j;
+             if (input.trim() !== '') {
+                arr = ('' + text).split('<p>');
+                for (j = 0; j < words.length; j++) {
+                   arr[0] = AwesompleteUtil.mark(arr[0], words[j]);
+                }
+                text = arr.join('<p>');           
+              } 
+              return AwesompleteUtil.item(text, input);
+           }
+         </script>
+         <%= awesomplete(
+              :user, 
+              :artist1, 
+              [
+               class: "form-control"
+              ], 
+              %{
+                 url:    "https://api.spotify.com/v1/search?type=artist&limit=15&q=artist:",
+                 urlEnd: "*",
+                 limit: 15,
+                 filter: "filterWords",
+                 item: "itemWords",
+                 convertResponse: "AwesompleteUtil.jsonFlatten.bind({value: 'name'})"
+               }
+         ) %>
+         <a href="https://nico-amsterdam.github.io/awesomplete-util/phoenix.html#spotify-artist">Code</a>
+       </div>
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend class="h4">
+    Spotify track
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'Dancing Queen'
+      </div>
+    </div>
+    <div class="form-group row track-input">
+       <%= label(:user, :track1, "Track", class: "control-label col-sm-2") %>
+       <div class="col-sm-10">
+         <script>var artistsFun = function(e, dataField) { 
+                    var arrArtists = e.detail.length === 1 ? e.detail[0][dataField] : [], j, html = ''; 
+                    for (j=0; j < arrArtists.length; j++) {
+                      html = html + '<li>' + arrArtists[j].name;
+                    } 
+                    Awesomplete.$('#awe-track-artists').innerHTML = '<ul>' + html + '</ul>'; 
+                 }
+
+                 var albumImgFun = function(e, dataField) {
+                    var arrImages = e.detail.length === 1 ? e.detail[0][dataField] : [], html = ''; 
+                    if (arrImages.length > 0) {
+                      html = '<img src="' + arrImages[0].url + '" class="img-responsive" />';
+                    } 
+                    Awesomplete.$('#awe-track-album-img').innerHTML = html;
+                 }
+
+ /* https://developer.spotify.com/web-api/search-item/ */
+
+         </script> 
+         <%= copy_to_id(:user, :track1, "album.name", "#awe-track-album") %>
+         <%= copy_to_id(:user, :track1, "album.images", "albumImgFun") %>
+         <%= copy_to_id(:user, :track1, "artists", "artistsFun") %>
+         <%= awesomplete(
+              :user, 
+              :track1, 
+              [
+               class: "form-control"
+              ], 
+              %{
+                 url:    "https://api.spotify.com/v1/search?type=track&limit=10&q=track:",
+                 urlEnd: "*",
+                 limit: 10,
+                 maxItems: 10,
+                 minChars: 3,
+                 value: "name",
+                 prepop: true,
+                 descr: "album.name",
+                 filter: "filterWords",
+                 item: "itemWords",
+                 convertResponse: "flatSpotify"
+               }
+         ) %>
+       </div>
+    </div>
+    <div class="row artists">
+       <label class="text-right col-sm-2" >Artists</label>
+       <div class="col-sm-10" id="awe-track-artists"></div>
+    </div>
+    <div class="row album"> 
+       <label class="text-right col-sm-2" >Album</label>
+       <div class="col-sm-3" id="awe-track-album"></div>
+       <div class="col-sm-7" id="awe-track-album-img"></div>
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend class="h4">
+    Combobox for country names, countries loaded on page-load
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'Belgium'
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= copy_to_id(:user, :name7, "capital", "#awe-country7-result") %>
+      <%= label(:user, :name7, "Country", class: "control-label col-sm-2") %>
+      <div class="col-sm-10">
+        <span class="table">
+          <%= awesomplete(:user, :name7, 
+                          [class: "form-control dropdown-input"], 
+                          [ url: "//restcountries.eu/rest/v1/all", 
+                            loadall: true, 
+                            prepop: true,
+                            minChars: 1, 
+                            maxItems: 10, 
+                            value: "name",
+                            combobox: true
+                          ]) %>
+          <span class="input-group-btn">
+            <button class="dropdown-btn" id="awe_btn_user_name7" type="button">
+              <span class="caret"></span>
+            </button>
+          </span>
+        </span>
+        <div id="awe-country7-result"></div>
+      </div>
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend class="h4">
+    Rest service does not return a list, but one result if it is a match, don't show suggestions, 
+    check value and show description
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'usa'
+      </div>
+    </div>
+    <div class="form-group row">
+       <%= label(:user, :country_iso, "Country iso code", class: "control-label col-sm-2") %>
+       <div class="col-sm-10">
+         <%= copy_to_id(:user, :country_iso, "RestResponse.result.name", "#awe-result2") %>
+         <%= awesomplete(
+              :user, 
+              :country_iso, 
+              [
+               class: "form-control"
+              ], 
+              %{
+                 url:    "http://services.groupkt.com/country/get/iso3code/",
+                 limit: "1",
+                 minChars: 3, 
+                 maxItems: 0, 
+                 filter: "AwesompleteUtil.filterStartsWith",
+                 convertResponse: "AwesompleteUtil.jsonFlatten.bind({root: 'RestResponse.result', value: 'RestResponse.result.alpha3_code'})"
+               }
+         ) %>
+         <span id="awe-result2"></span>
+       </div>
+    </div>
+  </fieldset>
+
+
+  <!-- fieldset>
+    <legend class="h4">
+    Enter country iso code, no suggestions (maxItems=0), description shown after entering
+    </legend>
+    <div class="row">
+      <div class="col-sm-12">
+         Enter for example 'usa'
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= copy_to_id(:user, :name4, "name", "#awe-country-result") %>
+      <%= label(:user, :name4, "Country", class: "control-label col-sm-2") %>
+      <div class="col-sm-10">
+        <%= awesomplete(:user, :name4, [class: "form-control"], [ url: "//services.groupkt.com/country/get/iso3code/", minChars: 3, maxItems: 10, value: "name"]) %>
+      </div>
+      <div id="awe-country-result"></div>
+    </div>
+  </fieldset -->
+
+      
+</form>

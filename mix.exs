@@ -33,6 +33,7 @@ defmodule PhoenixExample.Mixfile do
      {:phoenix, "~> 1.1.6"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:phoenix_form_awesomplete, github: "nico-amsterdam/phoenix_form_awesomplete"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:feeder_ex, "~> 0.0.2"},

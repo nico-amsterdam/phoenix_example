@@ -10,7 +10,36 @@
     <title>Hello PhoenixExample!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>"/>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/my.css") %>"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- link rel="stylesheet" href="<%= static_path(@conn, "/css/awesomplete.css") %>" -->
+
+    <!-- rawgit uses maxcdn, github.io pages use fastly -->
+    <!-- link rel="stylesheet" href="//cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css" -->
+    <!-- link rel="stylesheet" href="//leaverou.github.io/awesomplete/awesomplete.css" -->
+    <link rel="stylesheet" href="//nico-amsterdam.github.io/awesomplete-util/css/awesomplete.css">
+
+    <!-- rawgit uses maxcdn, github.io pages use fastly -->
+    <!-- script src="//cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script -->
+    <!-- script src="//rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.js"></script -->
+    <!-- script src="//leaverou.github.io/awesomplete/awesomplete.min.js"></script -->
+    <script src="//nico-amsterdam.github.io/awesomplete-util/js/awesomplete.min.js"></script>
+    <!-- script src="<%= static_path(@conn, "/js/awesomplete.js") %>"></script -->
+    <style>
+      .table { display: table }
+      div.awesomplete {display: block}
+      .input-group-btn .dropdown-btn {line-height: 30px}
+      div.awesomplete-disabled ul li p mark {background: none; color:#333; padding:0}
+      div.awesomplete ul li p, div.awesomplete ul li div {display: block; font-size: small; margin-left: 1em}
+      div.awesomplete .awe-found {border: 2px solid green}
+      .hide-not-found div.awesomplete .awe-not-found {border-color: lightblue}
+      div.awesomplete .awe-not-found {border: 2px solid red}
+      #awe-track-artists ul { margin-top: 0 }
+    </style>
+
+    <!-- script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script -->
+
+    <!-- script src="<%= static_path(@conn, "/js/awesomplete_util.js") %>"></script -->
+    <script src="//nico-amsterdam.github.io/awesomplete-util/js/awesomplete-util.js"></script>
+    <!-- script src="<%= static_path(@conn, "/js/awesomplete_util.min.js") %>"></script -->
 
   </head>
 

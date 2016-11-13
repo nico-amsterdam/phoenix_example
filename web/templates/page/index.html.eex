@@ -4,6 +4,9 @@
       <li>
         <a href="/scrape_news"><%= gettext "Scrape" %></a>
       </li>
+      <li>
+        <a href="/autocomplete"><%= gettext "Autocomplete" %></a>
+      </li>
     </ul>
   </div>
 </div>
