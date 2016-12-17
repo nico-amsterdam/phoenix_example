@@ -10,41 +10,14 @@
      Use the AwesompleteUtil filter to filter on value instead of label, which would be undesirable 
      because it would match the html element and attribute names, if you type 'style' it will match
      all colors..
- 
-     <label for="color" class="control-label col-sm-2">
-     Color
-     </label>
-     <div class="col-sm-10">
-         <%= awesomplete(
-              :user, 
-              :color, 
-              [class: "form-control"], 
-              %{ 
-                 minChars: 1, 
-                 maxItems: 10, 
-                 filter: "AwesompleteUtil.filterContains",
-           list: "[
-               { label: \"<b style='color:black'>black</b>\",   value: 'black' },
-               { label: \"<b style='color:blue'>blue</b>\",     value: 'blue'  },
-               { label: \"<b style='color:brown'>brown</b>\",   value: 'brown' },
-               { label: \"<b style='color:green'>green</b>\",   value: 'green' },
-               { label: \"<b style='color:orange'>orange</b>\", value: 'orange'},
-               { label: \"<b style='color:pink'>pink</b>\",     value: 'pink'  },
-               { label: \"<b style='color:purple'>purple</b>\", value: 'purple'},
-               { label: \"<b style='color:red'>red</b>\",       value: 'red'   },
-               { label: \"<b style='color:yellow'>yellow</b>\", value: 'yellow'}
-           ]"
-                  }
-             ) %>
-     </div>
    </div>
 
    <div class="form-group row">
-     <label for="country" class="control-label col-sm-2">
+     <label for="country3" class="control-label col-sm-2">
      Country
      </label>
      <div class="col-sm-10">
-     <input class="awesomplete form-control" id="country"
+     <input class="awesomplete form-control" id="country3"
        value="India"
        data-minchars="1"
        data-maxitems="5"
@@ -68,27 +41,7 @@
      </div>
    </div>
 
-   <div class="form-group row">
-     <label for="email1" class="control-label col-sm-2">
-     Email5
-     </label>
-     <div class="col-sm-10">
-         <%= text_input(:user, :email5, [class: "form-control", value: "aol.com", autocomplete: "off", "data-list": "aol.com, att.net, comcast.net, facebook.com, gmail.com, gmx.com, googlemail.com, google.com, hotmail.com, hotmail.co.uk, mac.com, me.com, mail.com, msn.com, live.com, sbcglobal.net, verizon.net, yahoo.com, yahoo.co.uk" ]) %>
-     </div>
-     <div id="awe-resultx"></div>
-         <%= copy_to_id(:user, :email5, nil, "#awe-resultx") %>
-         <%= awesomplete_script_tag(
-              :user, 
-              :email5, 
-              %{ 
-                 prepop: true, 
-                 minChars: 1, 
-                 maxItems: 10
-               }
-             ) %>
-   </div>
-
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Search product names starting with search text, display name and description
     </legend>
@@ -106,7 +59,7 @@
               :user, 
               :name1, 
               [class: "form-control", value: "Basic Electical"], 
-              %{ url: "/rest/public/v1/productcat/?contains=",
+              %{ url: "/rest/public/v1/productcat/?search-fields=name,description&contains=",
      #           prepop: true, 
      #           loadall: true, 
                  minChars: 1, 
@@ -124,7 +77,7 @@
     </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Search text in product name or description
     </legend>
@@ -141,7 +94,7 @@
     </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Search country names, countries loaded on page-load
     </legend>
@@ -151,11 +104,11 @@
       </div>
     </div>
     <div class="form-group row">
-      <%= copy_to_field(:user, :country2, "capital", :user, :capital) %>
-      <%= copy_to_field(:user, :capital, "name", :user, :country2) %>
-      <%= label(:user, :country2, "Country", class: "control-label col-sm-2") %>
+      <%= copy_to_field(:user, :country, "capital", :user, :capital) %>
+      <%= copy_to_field(:user, :capital, "name", :user, :country) %>
+      <%= label(:user, :country, "Country", class: "control-label col-sm-2") %>
       <div class="col-sm-4">
-        <%= awesomplete(:user, :country2, [class: "form-control"], 
+        <%= awesomplete(:user, :country, [class: "form-control"], 
             [ 
               assign: true,
               minChars: 1, 
@@ -178,7 +131,7 @@
            var xhr = this, list;
            if (xhr.status === 200) {
              list = JSON.parse(xhr.responseText);
-             awe_user_country2.list = list;
+             awe_user_country.list = list;
              awe_user_capital.list = list;
            }
          });
@@ -194,7 +147,7 @@
     </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     email
     </legend>
@@ -204,25 +157,25 @@
       </div>
     </div>
     <div class="form-group row">
-       <%= label(:user, :name5, "Email", class: "control-label col-sm-2") %>
+       <%= label(:user, :name5, "Seafood toppings", class: "control-label col-sm-2") %>
        <div class="hide-not-found col-sm-10">
          <%= awesomplete(
               :user, 
               :name5, 
-              [type: "email",
+              [
                class: "form-control",
-              "data-list": "aol.com, att.net, comcast.net, facebook.com, gmail.com, gmx.com, googlemail.com, google.com, hotmail.com, hotmail.co.uk, mac.com, me.com, mail.com, msn.com, live.com, sbcglobal.net, verizon.net, yahoo.com, yahoo.co.uk"
+              "data-list": "Anchovies, Cajun Prawn, Crayfish, Lobster, Oysters, Prawns, Salmon, Shrimps, Smoked Salmon, Squid, Tuna, Whitebait"
               ], 
               %{
-                 filter: "Awesomplete.FILTER_STARTSWITH",
-                 data:   "function (text, input) { return input.slice(0, input.indexOf('@')) + '@' + text; }"
+                 minChars: 1,
+                 multiple: ",;"
                }
          ) %>
        </div>
     </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Ssh hosts
     </legend>
@@ -255,7 +208,7 @@
   </fieldset>
 
   <script src="/js/uinames2contacts.js"></script>
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Email address
     </legend>
@@ -265,29 +218,37 @@
       </div>
     </div>
     <div class="form-group row">
+         
        <%= label(:user, :email2, "Email", class: "control-label col-sm-2") %>
        <div class="col-sm-10">
-         <%= awesomplete(
-              :user, 
-              :email2, 
-              [
-               class: "form-control"
-              ], 
-              %{
-                 url:    "//uinames.com/api/?amount=100",
-                 convertResponse: "uinames2contacts",
-                 loadall: true,
-                 minChars: 1,
-                 value:  "value", 
-                 label:  "name",
-                 descr:  "email"
-               }
+        <%= awesomplete(
+         :user, 
+         :email2, 
+         [
+          class: "form-control"
+         ], 
+         %{
+           url:    "//uinames.com/api/?amount=100",
+           convertResponse: "uinames2contacts",
+           loadall: true,
+           minChars: 1,
+           multiple: ";,",
+           value:  "value", 
+           label:  "name",
+           descr:  "email",
+            # In this example the 'value' field contains both name (label) and email address (descr).
+            # By default the description field is not highlighted unless we specify descrSearch=true.
+            # We could do that, but we get arguably a more simple outcome with descrSearch=false and 
+            # this item function which will highlight matches everywhere.
+            # Try for example to search on @acme.com to see what it highlights with or without this function. 
+           item: "AwesompleteUtil.itemMarkAll"   # function names must also be double quoted
+          }
          ) %>
        </div>
     </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Spotify artist
     </legend>
@@ -317,7 +278,7 @@
                 text = arr.join('<p>');           
               } 
               return AwesompleteUtil.item(text, input);
-           }
+           };
          </script>
          <%= awesomplete(
               :user, 
@@ -334,13 +295,13 @@
                  convertResponse: "AwesompleteUtil.jsonFlatten.bind({value: 'name'})"
                }
          ) %>
-         <a href="https://nico-amsterdam.github.io/awesomplete-util/phoenix.html#spotify-artist">Code</a>
+         <a href="https://nico-amsterdam.github.io/awesomplete-util/phoenix.html#spotify-artist" target="phoenix">Code</a>
        </div>
     </div>
   </fieldset>
 
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Spotify track
     </legend>
@@ -391,7 +352,7 @@
                  descr: "album.name",
                  filter: "filterWords",
                  item: "itemWords",
-                 convertResponse: "flatSpotify"
+                 convertResponse: "AwesompleteUtil.jsonFlatten.bind({value: 'name'})"
                }
          ) %>
        </div>
@@ -407,8 +368,46 @@
     </div>
   </fieldset>
 
+  <fieldset id="colors" class="example">
+    <legend class="h3">
+    Colors
+    </legend>
+    <div class="row odd">
+      <div class="col-sm-12">
+         Enter a color:
+      </div>
+      <label class="control-label col-sm-2" for="user_color">Color</label>
+      <div class="col-sm-10 awesomplete">
+         <input id="user_color" class="form-control" name="user[color]" value="purple" type="text">
+      </div>
+      <div class="col-sm-2 text-right"><span id="awe-color-result"></span> &#x21B2;</div>
+         <%= copy_to_id(:user, :color, "label", "#awe-color-result") %>
+         <%= awesomplete_script(
+              :user, 
+              :color, 
+              %{ 
+                 minChars: 1, 
+                 maxItems: 10, 
+                 prepop: true,
+                 filter: "AwesompleteUtil.filterContains",
+           list: "[
+               { label: \"<b style='color:black'>black</b>\",   value: 'black' },
+               { label: \"<b style='color:blue'>blue</b>\",     value: 'blue'  },
+               { label: \"<b style='color:brown'>brown</b>\",   value: 'brown' },
+               { label: \"<b style='color:green'>green</b>\",   value: 'green' },
+               { label: \"<b style='color:orange'>orange</b>\", value: 'orange'},
+               { label: \"<b style='color:pink'>pink</b>\",     value: 'pink'  },
+               { label: \"<b style='color:purple'>purple</b>\", value: 'purple'},
+               { label: \"<b style='color:red'>red</b>\",       value: 'red'   },
+               { label: \"<b style='color:yellow'>yellow</b>\", value: 'yellow'}
+           ]"
+                  }
+             ) %>
+    </div>
+  </fieldset>
 
-  <fieldset>
+
+  <fieldset class="example">
     <legend class="h4">
     Combobox for country names, countries loaded on page-load
     </legend>
@@ -428,7 +427,7 @@
                             loadall: true, 
                             prepop: true,
                             minChars: 1, 
-                            maxItems: 10, 
+                            maxItems: 8, 
                             value: "name",
                             combobox: true
                           ]) %>
@@ -444,7 +443,7 @@
   </fieldset>
 
 
-  <fieldset>
+  <fieldset class="example">
     <legend class="h4">
     Rest service does not return a list, but one result if it is a match, don't show suggestions, 
     check value and show description
@@ -457,7 +456,8 @@
     <div class="form-group row">
        <%= label(:user, :country_iso, "Country iso code", class: "control-label col-sm-2") %>
        <div class="col-sm-10">
-         <%= copy_to_id(:user, :country_iso, "RestResponse.result.name", "#awe-result2") %>
+         <!-- copy_to_id(:user, :country_iso, "RestResponse.result.name", "#awe-result2") -->
+         <%= copy_to_id(:user, :country_iso, "name", "#awe-result2") %>
          <%= awesomplete(
               :user, 
               :country_iso, 
@@ -465,12 +465,14 @@
                class: "form-control"
               ], 
               %{
-                 url:    "http://services.groupkt.com/country/get/iso3code/",
-                 limit: "1",
+                 # url:    "http://services.groupkt.com/country/get/iso3code/",
+                 url: "https://restcountries.eu/rest/v1/alpha/",
+                 value: "alpha3Code",
+                 limit: 1,
                  minChars: 3, 
                  maxItems: 0, 
-                 filter: "AwesompleteUtil.filterStartsWith",
-                 convertResponse: "AwesompleteUtil.jsonFlatten.bind({root: 'RestResponse.result', value: 'RestResponse.result.alpha3_code'})"
+                 filter: "AwesompleteUtil.filterStartsWith"
+                 # convertResponse: "AwesompleteUtil.jsonFlatten.bind({root: 'RestResponse.result', value: 'RestResponse.result.alpha3_code'})"
                }
          ) %>
          <span id="awe-result2"></span>

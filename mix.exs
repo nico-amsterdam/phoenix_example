@@ -30,11 +30,11 @@ defmodule PhoenixExample.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-     {:phoenix, "~> 1.1.6"},
-     {:phoenix_html, "~> 2.4"},
+     {:phoenix, "~> 1.2"},
+     {:phoenix_html, "~> 2.8"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:phoenix_form_awesomplete, github: "nico-amsterdam/phoenix_form_awesomplete"},
-     {:gettext, "~> 0.9"},
+     {:phoenix_form_awesomplete, "~> 0.1.0"},
+     {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.0"},
      {:feeder_ex, "~> 0.0.2"},
      {:httpotion, "~> 3.0"},
