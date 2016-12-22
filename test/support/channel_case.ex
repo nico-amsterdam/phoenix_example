@@ -4,7 +4,7 @@ defmodule PhoenixExample.ChannelCase do
   channel tests.
 
   Such tests rely on `Phoenix.ChannelTest` and also
-  imports other functionality to make it easier
+  import other functionality to make it easier
   to build and query models.
 
   Finally, if the test case interacts with the database,
@@ -20,14 +20,14 @@ defmodule PhoenixExample.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
+      alias PhoenixExample.Repo
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
+
 
       # The default endpoint for testing
       @endpoint PhoenixExample.Endpoint
     end
-  end
-
-  setup tags do
-
-    :ok
   end
 end

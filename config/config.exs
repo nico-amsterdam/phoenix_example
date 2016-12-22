@@ -5,12 +5,15 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :phoenix_example,
+  ecto_repos: [PhoenixExample.Repo]
+
 # Configures the endpoint
 config :phoenix_example, PhoenixExample.Endpoint,
   url: [host: "localhost"],
-  root: Path.dirname(__DIR__),
-  secret_key_base: "vmcdxuHmE1zrb+RIW0TO3WQLwBGOlPTBp5zFCYNr0rpIGOS/9GDjcEEwAK7T1AFy",
-  render_errors: [accepts: ~w(html json)],
+  secret_key_base: "vER7uNKEqj0uMSDci6zQGxg3nrhZhsdIiPlZE0ywov4ETN9+Q+X58mr2S3F9QntO",
+  render_errors: [view: PhoenixExample.ErrorView, accepts: ~w(json)],
   pubsub: [name: PhoenixExample.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -18,6 +21,12 @@ config :phoenix_example, PhoenixExample.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+
+config :ecto_mnesia,
+  host: {:system, :atom, "MNESIA_HOST", Kernel.node()},
+  dir: {:system, "MNESIA_DATA_DIR", "priv/data/mnesia"},
+  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :disc_copies}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

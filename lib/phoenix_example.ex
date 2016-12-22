@@ -13,6 +13,7 @@ defmodule PhoenixExample do
       supervisor(PhoenixExample.Endpoint, []),
       # Here you could define other workers and supervisors as children
       # worker(PhoenixExample.Worker, [arg1, arg2, arg3]),
+      supervisor(PhoenixExample.Repo, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

@@ -4,7 +4,7 @@ defmodule PhoenixExample.ConnCase do
   tests that require setting up a connection.
 
   Such tests rely on `Phoenix.ConnTest` and also
-  imports other functionality to make it easier
+  import other functionality to make it easier
   to build and query models.
 
   Finally, if the test case interacts with the database,
@@ -20,6 +20,11 @@ defmodule PhoenixExample.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
+      alias PhoenixExample.Repo
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
+
       import PhoenixExample.Router.Helpers
 
       # The default endpoint for testing
@@ -27,8 +32,9 @@ defmodule PhoenixExample.ConnCase do
     end
   end
 
-  setup tags do
+  setup _tags do
 
-    {:ok, conn: Phoenix.ConnTest.conn()}
+    {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
+
 end

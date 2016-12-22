@@ -25,22 +25,6 @@
      </div>
    </div>
 
-   <!-- zoiets als het onderstaande, maar dan met copy-to-id, value die match -->
-   <div class="form-group row">
-     <label for="email2" class="control-label col-sm-2">
-     Email (geen util)
-     </label>
-     <div class="col-sm-10">
-         <%= copy_to_id(:user, :name1, "description", "#awe-result") %>
-     <input class="form-control" id="email2" data-list="aol.com, att.net, comcast.net, facebook.com, gmail.com, gmx.com, googlemail.com, google.com, hotmail.com, hotmail.co.uk, mac.com, me.com, mail.com, msn.com, live.com, sbcglobal.net, verizon.net, yahoo.com, yahoo.co.uk" value="aol.com">
-     <script>
-        new Awesomplete('input[id="email2"]', {
-           filter: Awesomplete.FILTER_STARTSWITH
-        });
-     </script>
-     </div>
-   </div>
-
   <fieldset class="example">
     <legend class="h4">
     Search product names starting with search text, display name and description

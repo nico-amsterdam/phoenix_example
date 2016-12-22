@@ -8,3 +8,7 @@ config :phoenix_example, PhoenixExample.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Configure your database
+config :phoenix_example, PhoenixExample.Repo,
+  adapter: Ecto.Adapters.Mnesia
