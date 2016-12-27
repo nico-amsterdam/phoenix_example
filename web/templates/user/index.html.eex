@@ -5,7 +5,6 @@
     <tr>
       <th>Name</th>
       <th>Address</th>
-      <th>Date of birth</th>
       <th>Number of children</th>
       <th>Notifications enabled</th>
 
@@ -17,7 +16,6 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.address %></td>
-      <td><%= user.date_of_birth %></td>
       <td><%= user.number_of_children %></td>
       <td><%= user.notifications_enabled %></td>
 

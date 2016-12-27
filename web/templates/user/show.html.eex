@@ -13,11 +13,6 @@
   </li>
 
   <li>
-    <strong>Date of birth:</strong>
-    <%= @user.date_of_birth %>
-  </li>
-
-  <li>
     <strong>Number of children:</strong>
     <%= @user.number_of_children %>
   </li>

@@ -5,7 +5,6 @@ defmodule PhoenixExample.Repo.Migrations.CreateUser do
     create table(:users) do
       add :name, :string
       add :address, :string
-      add :date_of_birth, :datetime
       add :number_of_children, :integer
       add :notifications_enabled, :boolean, default: false, null: false
 
