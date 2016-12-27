@@ -24,6 +24,8 @@ defmodule PhoenixExample.Router do
     get "/", PageController, :index
     get "/scrape_news", ScrapeNewsController, :index
     get "/autocomplete", AutocompleteController, :index
+
+    resources "/users", UserController
   end
 
   scope "/rest/public", PhoenixExample do

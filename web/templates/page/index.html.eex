@@ -3,9 +3,10 @@
     <ul class="nav">
       <li>
         <a href="/scrape_news"><%= gettext "Scrape" %></a>
-      </li>
       <li>
         <a href="/autocomplete"><%= gettext "Autocomplete" %></a>
+      <li>
+        <a href="/users"><%= gettext "User form" %></a>
       </li>
     </ul>
   </div>
