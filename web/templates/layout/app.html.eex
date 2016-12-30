@@ -23,6 +23,8 @@
     <!-- script src="//leaverou.github.io/awesomplete/awesomplete.min.js"></script -->
     <script src="//nico-amsterdam.github.io/awesomplete-util/js/awesomplete.min.js"></script>
     <!-- script src="<%= static_path(@conn, "/js/awesomplete.js") %>"></script -->
+    <script src="<%= static_path(@conn, "/js/phoenix.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/phoenix_html.js") %>"></script>
     <style>
       .table { display: table }
       .input-group-btn .dropdown-btn {line-height: 30px}

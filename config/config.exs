@@ -26,7 +26,7 @@ config :logger, :console,
 config :ecto_mnesia,
   host: {:system, :atom, "MNESIA_HOST", Kernel.node()},
   dir: {:system, "MNESIA_DATA_DIR", "priv/data/mnesia"},
-  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :disc_copies}
+  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :ram_copies}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
