@@ -22,11 +22,15 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-
 config :ecto_mnesia,
+# uses confex:
   host: {:system, :atom, "MNESIA_HOST", Kernel.node()},
   dir: {:system, "MNESIA_DATA_DIR", "priv/data/mnesia"},
-  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :ram_copies}
+  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :disk_copies}
+
+config :mnesia,
+  dir: 'priv/data/mnesia'  # Make sure this directory exists
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
