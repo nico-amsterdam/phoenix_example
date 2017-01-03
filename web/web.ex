@@ -51,6 +51,7 @@ defmodule PhoenixExample.Web do
 
       import PhoenixExample.Router.Helpers
       import PhoenixExample.ErrorHelpers
+      import PhoenixExample.InputHelpers
       import PhoenixExample.Gettext
 
       # Awesomplete autocomplete widget:

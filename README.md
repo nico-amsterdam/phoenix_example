@@ -35,6 +35,9 @@ $ git clone https://github.com/nico-amsterdam/phoenix_example.git
 ```sh
 $ cd phoenix_example
 $ mix deps.get
+$ mkdir priv/data/mnesia
+$ mix ecto.create
+$ mix ecto.migrate
 $ mix phoenix.server
 ```
 

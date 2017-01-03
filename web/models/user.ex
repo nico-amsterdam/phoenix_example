@@ -17,5 +17,7 @@ defmodule PhoenixExample.User do
     struct
     |> cast(params, [:name, :address, :number_of_children, :notifications_enabled])
     |> validate_required([:name, :address, :number_of_children, :notifications_enabled])
+    |> validate_length(:address, min: 3)
+    |> validate_number(:number_of_children, greater_than_or_equal_to: 0)
   end
 end

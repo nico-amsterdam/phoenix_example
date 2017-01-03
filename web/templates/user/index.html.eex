@@ -1,4 +1,5 @@
 <h2>Listing users</h2>
+Example from <a href="http://blog.plataformatec.com.br/2016/09/dynamic-forms-with-phoenix/">dynamic forms with phoenix</a>.
 
 <table class="table">
   <thead>
