@@ -38,11 +38,11 @@ defmodule PhoenixExample.Mixfile do
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:feeder_ex, "~> 0.0.2"},
+     {:feeder_ex, "~> 1.0.0"},
      {:httpotion, "~> 3.0"},
      {:select, "~> 0.0.1"},
      {:nimble_csv, "~> 0.1"},
-     {:eternal, "~> 1.0"},
+     {:eternal, "~> 1.1"},
      {:simple_mem_cache, "~> 0.1.1"},
      {:phoenix_form_awesomplete, "~> 0.1"}
     ]
