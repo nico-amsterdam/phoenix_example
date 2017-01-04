@@ -1,9 +1,10 @@
 defmodule PhoenixExample.InputHelpers do
+  use Phoenix.HTML
+
   @moduledoc """
   Input controls with boilerplate
   """
 
-  use Phoenix.HTML
 
   @doc """
   Input control
@@ -21,7 +22,7 @@ defmodule PhoenixExample.InputHelpers do
 
     content_tag :div, wrapper_opts do
       label = label(form, field, humanize(field), label_opts)
-      input = apply(Phoenix.HTML.Form, type, [form, field, input_opts])
+      input = input(type, form, field, input_opts)
       error = PhoenixExample.ErrorHelpers.error_tag(form, field) || "" 
       [label, input, error]
     end
@@ -36,5 +37,24 @@ defmodule PhoenixExample.InputHelpers do
     end
   end
 
+  # Implement clauses below for custom inputs.
+  defp input(:search_country, form, field, input_opts) do
+    PhoenixFormAwesomplete.awesomplete(
+      form,
+      field,
+      input_opts,
+      %{
+        url: "https://restcountries.eu/rest/v1/all",
+        loadall: true,
+        minChars: 1,
+        maxItems: 8,
+        value: "name"
+      }
+     )
+  end
+
+  defp input(type, form, field, input_opts) do
+    apply(Phoenix.HTML.Form, type, [form, field, input_opts])
+  end
 
 end
