@@ -8,12 +8,16 @@ defmodule PhoenixExample.InputHelpers do
   @doc """
   Input control
   """
-  def input(form, field) do
-    type = Phoenix.HTML.Form.input_type(form, field)
+  def input(form, field, opts \\ []) do
+    type = opts[:using] || Phoenix.HTML.Form.input_type(form, field)
 
     wrapper_opts = [class: "form-group #{state_class(form, field)}"]
     label_opts = [class: "control-label"]
     input_opts = [class: "form-control"]
+
+    # add client-side validation
+    validations = Phoenix.HTML.Form.input_validations(form, field)
+    input_opts = Keyword.merge(validations, input_opts)
 
     content_tag :div, wrapper_opts do
       label = label(form, field, humanize(field), label_opts)
