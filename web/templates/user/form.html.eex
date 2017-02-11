@@ -6,7 +6,7 @@
   <% end %>
 
   <%= input f, :name %>
-  <%= input f, :address, using: :search_country %>
+  <%= input f, :country, using: :search_country %>
   <%= input f, :number_of_children %>
   <%= input f, :notifications_enabled %>
 

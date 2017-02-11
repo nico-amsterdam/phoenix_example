@@ -3,7 +3,7 @@ defmodule PhoenixExample.User do
 
   schema "users" do
     field :name, :string
-    field :address, :string
+    field :country, :string
     field :number_of_children, :integer
     field :notifications_enabled, :boolean, default: false
 
@@ -15,9 +15,9 @@ defmodule PhoenixExample.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :address, :number_of_children, :notifications_enabled])
-    |> validate_required([:name, :address, :number_of_children, :notifications_enabled])
-    |> validate_length(:address, min: 3)
+    |> cast(params, [:name, :country, :number_of_children, :notifications_enabled])
+    |> validate_required([:name, :country, :number_of_children, :notifications_enabled])
+    |> validate_length(:country, min: 3)
     |> validate_number(:number_of_children, greater_than_or_equal_to: 0)
   end
 end

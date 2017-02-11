@@ -5,7 +5,7 @@ Example from <a href="http://blog.plataformatec.com.br/2016/09/dynamic-forms-wit
   <thead>
     <tr>
       <th>Name</th>
-      <th>Address</th>
+      <th>Country</th>
       <th>Number of children</th>
       <th>Notifications enabled</th>
 
@@ -16,7 +16,7 @@ Example from <a href="http://blog.plataformatec.com.br/2016/09/dynamic-forms-wit
 <%= for user <- @users do %>
     <tr>
       <td><%= user.name %></td>
-      <td><%= user.address %></td>
+      <td><%= user.country %></td>
       <td><%= user.number_of_children %></td>
       <td><%= user.notifications_enabled %></td>
 

@@ -8,8 +8,8 @@
   </li>
 
   <li>
-    <strong>Address:</strong>
-    <%= @user.address %>
+    <strong>Country:</strong>
+    <%= @user.country %>
   </li>
 
   <li>

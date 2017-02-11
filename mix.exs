@@ -43,7 +43,7 @@ defmodule PhoenixExample.Mixfile do
      {:select, "~> 0.0.1"},
      {:nimble_csv, "~> 0.1"},
      {:eternal, "~> 1.1"},
-     {:simple_mem_cache, "~> 0.1.1"},
+     {:simple_mem_cache, "~> 1.0.0"},
      {:phoenix_form_awesomplete, "~> 0.1"}
     ]
   end

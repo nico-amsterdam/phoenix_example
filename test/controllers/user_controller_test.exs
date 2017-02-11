@@ -2,7 +2,7 @@ defmodule PhoenixExample.UserControllerTest do
   use PhoenixExample.ConnCase
 
   alias PhoenixExample.User
-  @valid_attrs %{address: "some content", name: "some content", notifications_enabled: true, number_of_children: 42}
+  @valid_attrs %{country: "some content", name: "some content", notifications_enabled: true, number_of_children: 42}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do

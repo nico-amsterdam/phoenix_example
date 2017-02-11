@@ -14,7 +14,8 @@ defmodule PhoenixExample.InputHelpers do
 
     wrapper_opts = [class: "form-group #{state_class(form, field)}"]
     label_opts = [class: "control-label"]
-    input_opts = [class: "form-control"]
+    control_class = if type == :checkbox, do: "checkbox", else: "form-control"
+    input_opts = [class: control_class]
 
     # add client-side validation
     validations = Phoenix.HTML.Form.input_validations(form, field)
