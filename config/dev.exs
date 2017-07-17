@@ -23,4 +23,4 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :phoenix_example, PhoenixExample.Repo,
-  adapter: Ecto.Adapters.Mnesia
+  adapter: EctoMnesia.Adapter

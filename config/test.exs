@@ -11,4 +11,4 @@ config :logger, level: :info, backends: [:console]
 
 # Configure your database
 config :phoenix_example, PhoenixExample.Repo,
-  adapter: Ecto.Adapters.Mnesia
+  adapter: EctoMnesia.Adapter
