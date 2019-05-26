@@ -32,9 +32,8 @@ defmodule PhoenixExample.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.2"},
-     {:poison, ">= 3.1.0"},
+     {:jason, "~> 1.0"},
      {:phoenix_ecto, "~> 3.1"},
-     {:ecto, "~> 2.1"},
      {:ecto_mnesia, github: "Nebo15/ecto_mnesia", ref: "master"},
      {:gettext, "~> 0.13"},
      {:plug_cowboy, "~> 1.0"},

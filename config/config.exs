@@ -12,6 +12,8 @@ config :phoenix_example, PhoenixExample.Repo,
   password: "pass",
   hostname: "localhost"
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
 
 # General application configuration
 config :phoenix_example,

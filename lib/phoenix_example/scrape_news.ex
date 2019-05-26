@@ -34,7 +34,7 @@ defmodule PhoenixExample.ScrapeNews do
   # scrape rss feed
   defp scrape_sdtimes() do
     try do 
-      body = curl("http://sdtimes.com/feed/")
+      body = curl("https://sdtimes.com/feed/")
       {:ok, feed, _} = FeederEx.parse(body)
       list = Enum.map(feed.entries, &sdtimes_entry(&1))
       "<ul class=\"sdtimes\">" <> Enum.join(list) <> "</ul>"
@@ -49,7 +49,7 @@ defmodule PhoenixExample.ScrapeNews do
   end
 
   defp scrape_dilbert do
-    body = curl("http://dilbert.com/")
+    body = curl("https://dilbert.com/")
     body
     |> remove_xml
     |> Select.parse
