@@ -17,10 +17,10 @@ defmodule PhoenixExample.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {PhoenixExample, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :ecto_mnesia,
-                    :httpotion, :xmerl, :feeder_ex, :feeder]]
+    [mod: {PhoenixExample, []}]
+     # applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
+     #                :phoenix_ecto, :ecto_mnesia,
+     #                :httpotion, :xmerl, :feeder_ex, :feeder]]
   end
 
   # Specifies which paths to compile per environment.
@@ -32,11 +32,12 @@ defmodule PhoenixExample.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.2"},
-     {:phoenix_ecto, "~> 3.2"},
+     {:poison, ">= 3.1.0"},
+     {:phoenix_ecto, "~> 3.1"},
      {:ecto, "~> 2.1"},
      {:ecto_mnesia, github: "Nebo15/ecto_mnesia", ref: "master"},
      {:gettext, "~> 0.13"},
-     {:cowboy, "~> 1.1"},
+     {:plug_cowboy, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:feeder_ex, "~> 1.1"},
      {:httpotion, "~> 3.0"},
@@ -57,6 +58,6 @@ defmodule PhoenixExample.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+     test: ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end
